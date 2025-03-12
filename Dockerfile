@@ -1,13 +1,17 @@
-FROM python:3-alpine
+FROM python:3.11-alpine
 
-WORKDIR /usr/src/mha
+WORKDIR /usr/src/app
 
+# Copy requirements first to leverage Docker cache
 COPY requirements.txt ./
 RUN apk add --no-cache gcc musl-dev && \
     pip install --no-cache-dir -r requirements.txt
 
-COPY mha/ .
+# Copy application code
+COPY mha/ ./mha/
 
+# Expose the port the app runs on
 EXPOSE 8080
 
-ENTRYPOINT ["python", "/usr/src/mha/server.py", "-b", "0.0.0.0"]
+# Command to run the application
+ENTRYPOINT ["python", "-m", "mha.server", "-b", "0.0.0.0"]

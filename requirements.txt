@@ -1,6 +1,7 @@
-flask
-pygal
-IPy
-geoip2
-python-dateutil
-gunicorn
+Flask==2.3.3
+Werkzeug==2.3.7
+pygal==3.0.0
+IPy==1.1.0
+geoip2==4.8.0
+python-dateutil==2.8.2
+gunicorn==21.2.0
